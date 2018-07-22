@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/paveg/tinderb.svg?style=svg&circle-token=099f30534abd2de081d34298b641f30c385d9016)](https://circleci.com/gh/paveg/tinderb)
+[![codecov](https://codecov.io/gh/paveg/tinderb/branch/master/graph/badge.svg)](https://codecov.io/gh/paveg/tinderb)
 
 # Tinderb
 
