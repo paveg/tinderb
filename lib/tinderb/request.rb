@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'faraday'
+require 'faraday_middleware'
 
 module Faraday
   class Request
@@ -53,9 +54,15 @@ module Tinderb
         conn.request :tinderb_oauth2, @access_token if @access_token
         conn.request :url_encoded
         conn.request :json
+        assigne_header(conn)
         conn.response :json, content_type: /\bjson$/
         conn.adapter Faraday.default_adapter
       end
+    end
+
+    def assigne_header(conn)
+      conn.headers['User-agent'] ||= 'Tinder/7.1.1 (iPod touch; iOS 10.2; Scale/2.00)'
+      conn.headers['Content-type'] ||= 'application/json'
     end
   end
 end

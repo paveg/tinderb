@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'codecov'
   spec.add_dependency 'faraday', '~> 0.15'
+  spec.add_dependency 'faraday_middleware'
   spec.add_dependency 'oauthenticator', '~> 1.3'
   spec.add_dependency 'rspec_junit_formatter'
   spec.add_dependency 'simplecov'
