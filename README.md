@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/paveg/tinderb.svg?style=svg&circle-token=099f30534abd2de081d34298b641f30c385d9016)](https://circleci.com/gh/paveg/tinderb)
+
 # Tinderb
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/tinderb`. To experiment with that code, run `bin/console` for an interactive prompt.
