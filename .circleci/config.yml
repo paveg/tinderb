@@ -1,0 +1,39 @@
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/ruby:2.5.1-node-browsers
+
+    environment:
+      - CIRCLE_ARTIFACTS: "/tmp/test-results"
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --quiet --retry=3 --path vendor/bundle
+
+      # run tests!
+      - run:
+          name: run tests & code coverage
+          command: |
+            mkdir $CIRCLE_ARTIFACTS
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+            bundle exec rspec --format progress \
+                            --format RspecJunitFormatter \
+                            --out $CIRCLE_ARTIFACTS/rspec.xml \
+                            $TEST_FILES; ret=$?
+            bash <(curl -s https://codecov.io/bash) -t $CODECOVE_TOKEN
+            exit $ret
+
+      # collect reports
+      - store_test_results:
+          path: $CIRCLE_ARTIFACTS
+      - store_artifacts:
+          path: $CIRCLE_ARTIFACTS
+          destination: test-results
