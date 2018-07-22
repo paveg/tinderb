@@ -3,5 +3,6 @@
 require 'tinderb/version'
 
 module Tinderb
-  # Your code goes here...
+  API_ENDPOINT = 'https://api.gotinder.com'
+  OAUTH_PATH = "#{API_ENDPOINT}/auth"
 end
