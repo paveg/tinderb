@@ -19,7 +19,16 @@ module Tinderb
     end
 
     def authorize
-      post(OAUTH_PATH, @oauth_params)
+      res = post(OAUTH_PATH, @oauth_params)
+      raise "error occurred. body: #{res.body}" unless res.status == 200
+      @token = res.body["token"]
+
+      res
+    end
+
+    def show_user(id)
+      res = get(USER_PATH + '/' + id)
+      res
     end
   end
 end

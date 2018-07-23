@@ -6,18 +6,17 @@ require 'faraday_middleware'
 module Faraday
   class Request
     class TinderbOauth2 < Middleware
-      def initialize(app, access_token)
+      def initialize(app, token)
         @app = app
-        @access_token = access_token
+        @token = token
       end
 
       def call(env)
-        env[:request_headers]['Authorization'] ||= "Bearer #{@access_token}"
+        env[:request_headers]['X-Auth-Token'] ||= @token
         @app.call(env)
       end
-
-      register_middleware tinderb_oauth2: TinderbOauth2
     end
+    register_middleware tinderb_oauth2: TinderbOauth2
   end
 end
 
@@ -48,10 +47,10 @@ module Tinderb
     end
 
     def connection
-      return @connection if instance_variable_defined?(:@connection)
+      return @connection if instance_variable_defined?(:@connection) && @connection.headers.key?('X-Auth-Token')
 
       @connection = Faraday.new(Tinderb::API_ENDPOINT) do |conn|
-        conn.request :tinderb_oauth2, @access_token if @access_token
+        conn.request :tinderb_oauth2, @token if @token
         conn.request :url_encoded
         conn.request :json
         assigne_header(conn)
@@ -61,7 +60,7 @@ module Tinderb
     end
 
     def assigne_header(conn)
-      conn.headers['User-agent'] ||= 'Tinder/7.1.1 (iPod touch; iOS 10.2; Scale/2.00)'
+      conn.headers['User-agent'] ||= 'Tinder/7.5.3 (iPhone; iOS 10.3.2; Scale/2.00)'
       conn.headers['Content-type'] ||= 'application/json'
     end
   end
