@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 require 'tinderb/version'
+require 'tinderb/client'
 
 module Tinderb
-  # Your code goes here...
+  API_ENDPOINT = 'https://api.gotinder.com'
+  OAUTH_PATH = "#{API_ENDPOINT}/auth"
 end

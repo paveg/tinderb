@@ -10,3 +10,8 @@ Metrics/LineLength:
   URISchemes:
     - http
     - https
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'tinderb.gemspec'
