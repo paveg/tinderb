@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'codecov'
-  spec.add_dependency 'faraday', '~> 0.15'
+  spec.add_dependency 'faraday', '~> 0.12.2'
   spec.add_dependency 'faraday_middleware'
   spec.add_dependency 'oauthenticator', '~> 1.3'
   spec.add_dependency 'rspec_junit_formatter'
