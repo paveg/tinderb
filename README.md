@@ -3,7 +3,6 @@
 
 # Tinderb
 
-
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -25,7 +24,7 @@ Or install it yourself as:
 ```ruby
 require 'tinderb'
 
-client = Tinderb.client.new(facebook_token: facebook_token, facebook_id: facebook_id)
+client = Tinderb::Client.new(facebook_token: facebook_token)
 client.authorize
 
 # and more using apis...
